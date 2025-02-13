@@ -1,0 +1,4 @@
+# newTarget(
+#    name
+#    type
+# )

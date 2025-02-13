@@ -26,7 +26,7 @@
 #define {{ project.name | upper }}_CONFIG_HPP
 
 #define {{ project.name | upper }}_VERSION "@{{ project.name | upper }}_VERSION@"
-#define {{ project.name | upper }}_BUILD_DATE "@{{ project.name | upper }}_BUILD_DATE@"
+#define {{ project.name | upper }}_BUILD_DATE @{{ project.name | upper }}_BUILD_DATE@
 #define {{ project.name | upper }}_GIT_REV "@{{ project.name | upper }}_BUILD_HASH@"
 
 #endif

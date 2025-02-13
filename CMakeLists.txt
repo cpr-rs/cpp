@@ -109,7 +109,7 @@ include(ProjectConfig)
 
 # Dependencies
 include(Dependencies)
-{% if testing_enabled %}
+{% if cpr.testing_enabled %}
 
 # Testing
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)

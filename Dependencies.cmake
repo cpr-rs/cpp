@@ -12,12 +12,14 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(<name>)
 #]]
+{% if cpr.testing_enabled %}
 
 FetchContent_Declare(
   catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
   GIT_TAG v3.7.1
 )
+{% endif %}
 
 FetchContent_Declare(
   cxxopts
@@ -32,6 +34,6 @@ FetchContent_Declare(
   SYSTEM
 )
 
-FetchContent_MakeAvailable(catch2)
+{% if cpr.testing_enabled %}FetchContent_MakeAvailable(catch2){% endif %}
 FetchContent_MakeAvailable(cxxopts)
 FetchContent_MakeAvailable(backward)

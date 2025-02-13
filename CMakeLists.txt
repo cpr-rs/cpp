@@ -109,10 +109,12 @@ include(ProjectConfig)
 
 # Dependencies
 include(Dependencies)
+{% if testing_enabled %}
 
 # Testing
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 enable_testing()
+{% endif %}
 
 # Install includes
 install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/"

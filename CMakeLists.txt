@@ -114,6 +114,7 @@ include(Dependencies)
 # Testing
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
 enable_testing()
+set(ENABLE_TEST_TARGETS ON)
 {% endif %}
 
 # Install includes

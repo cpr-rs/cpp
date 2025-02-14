@@ -59,11 +59,9 @@ function(newTarget targetName)
     )
 
     # Add vendor libraries
-    target_link_libraries(
-        ${targetName}
-        PRIVATE cxxopts::cxxopts
-        PRIVATE Backward::Backward
-    )
+    foreach(lib ${USE_VENDOR_TARGETS})
+        target_link_libraries(${targetName} PUBLIC ${lib})
+    endforeach()
 
     if(NT_LINK_LIBS)
         target_link_libraries(${targetName} PUBLIC ${NT_LINK_LIBS})
@@ -127,6 +125,11 @@ endfunction()
 #   Sources for target
 #
 function(newTest testName)
+    if (NOT ENABLE_TEST_TARGETS)
+        message(STATUS "Tests are disabled")
+        return()
+    endif()
+
     cmake_parse_arguments(NT "AGAINST" "SOURCES" ${ARGN})
 
     if(NOT __NT_${NT_AGAINST}_exists)
@@ -146,11 +149,9 @@ function(newTest testName)
     )
 
     # Add vendor libraries
-    target_link_libraries(
-        ${testName}
-        PRIVATE Backward::Backward
-        PRIVATE Catch2::Catch2WithMain
-    )
+    foreach(lib ${USE_TEST_VENDOR_TARGETS})
+        target_link_libraries(${testName} PRIVATE ${lib})
+    endforeach()
 
     if(NOT __FT_${NT_AGAINST}_is_binary)
         target_link_libraries(${testName} PRIVATE ${NT_AGAINST})

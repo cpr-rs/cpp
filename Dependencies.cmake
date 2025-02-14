@@ -22,9 +22,9 @@ FetchContent_Declare(
 {% endif %}
 
 FetchContent_Declare(
-  cxxopts
-  GIT_REPOSITORY https://github.com/jarro2783/cxxopts.git
-  GIT_TAG v3.2.1
+  structopt
+  GIT_REPOSITORY https://github.com/p-ranav/structopt.git
+  GIT_TAG master
 )
 
 FetchContent_Declare(
@@ -34,6 +34,20 @@ FetchContent_Declare(
   SYSTEM
 )
 
+FetchContent_Declare(
+  fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt
+  GIT_TAG e69e5f977d458f2650bb346dadf2ad30c5320281
+)
+
 {% if cpr.testing_enabled %}FetchContent_MakeAvailable(catch2){% endif %}
-FetchContent_MakeAvailable(cxxopts)
+FetchContent_MakeAvailable(structopt)
 FetchContent_MakeAvailable(backward)
+FetchContent_MakeAvailable(fmt)
+
+set(USE_VENDOR_TARGETS 
+  structopt::structopt
+  Backward::Object
+  fmt::fmt
+)
+{% if cpr.testing_enabled %}set(USE_TEST_VENDOR_TARGETS "${USE_VENDOR_TARGETS}" Catch2::Catch2WithMain){% endif %}
